@@ -91,7 +91,7 @@ CREATE TABLE Note (
     id INT AUTO_INCREMENT PRIMARY KEY,
     idEtudiant INT NOT NULL,
     idSemestre INT NOT NULL,
-    idOptionParcours INT NOT NULL,
+    -- idOptionParcours INT NOT NULL,
     idMatiere INT NOT NULL,
     note DECIMAL(5,2) NOT NULL,
 
