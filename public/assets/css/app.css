@@ -4,24 +4,20 @@
  */
 
 :root {
-  /* Couleurs (modifie ces variables pour "préciser" le thème) */
-  --ci-primary: #1d4ed8; /* bleu principal (liens, actif, boutons) */
-  --ci-primary-soft: rgba(29, 78, 216, 0.12);
-  --ci-primary-focus: rgba(29, 78, 216, 0.2);
-
-  --ci-bg: #f1f4f9; /* fond de page */
-  --ci-bg-soft: #ffffff; /* cartes */
-  --ci-border: #e2e8f0; /* bordures */
-
+  --ci-primary: #2563eb; /* blue */
+  --ci-primary-soft: rgba(37, 99, 235, 0.12);
+  --ci-primary-focus: rgba(37, 99, 235, 0.18);
+  --ci-border: #e6edf7;
+  --ci-bg: #f3f6fb;
+  --ci-bg-soft: #ffffff;
   --ci-text: #0f172a;
   --ci-text-muted: #64748b;
 
-  --ci-sidebar-bg: #0b1220; /* sidebar sombre */
-  --ci-sidebar-text: rgba(255, 255, 255, 0.72);
+  --ci-sidebar-bg: #0b1220;
+  --ci-sidebar-text: rgba(255, 255, 255, 0.75);
   --ci-sidebar-text-strong: rgba(255, 255, 255, 0.92);
-  --ci-sidebar-active: rgba(29, 78, 216, 0.28);
-
-  --ci-shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
+  --ci-sidebar-active: rgba(37, 99, 235, 0.22);
+  --ci-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
 }
 
 * {
@@ -32,11 +28,6 @@
 *:focus {
   background-color: var(--ci-primary-focus);
   outline: none;
-}
-
-*:focus-visible {
-  outline: 3px solid rgba(29, 78, 216, 0.25);
-  outline-offset: 2px;
 }
 
 html,
@@ -200,29 +191,6 @@ body {
   margin: 0 auto;
 }
 
-.card--wide {
-  max-width: 980px;
-  margin: 0;
-}
-
-.notice {
-  border-radius: 14px;
-  padding: 0.9rem 1rem;
-  border: 1px solid rgba(29, 78, 216, 0.18);
-  background: rgba(29, 78, 216, 0.08);
-  color: #1e3a8a;
-  margin-bottom: 1rem;
-}
-
-.section-title-row {
-  font-size: 0.85rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-weight: 800;
-  color: var(--ci-primary);
-  margin: 0 0 0.9rem;
-}
-
 .mt-3 {
   margin-top: 0.75rem;
 }
@@ -243,16 +211,7 @@ body {
   border: 1px solid var(--ci-border);
   padding: 0.6rem 0.75rem;
   font: inherit;
-  background: #ffffff;
-}
-
-.field input::placeholder {
-  color: rgba(100, 116, 139, 0.85);
-}
-
-.field input:focus {
-  border-color: rgba(29, 78, 216, 0.45);
-  box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.12);
+  background: #f8fafc;
 }
 
 .btn {
@@ -285,6 +244,30 @@ body {
   background: rgba(239, 68, 68, 0.08);
 }
 
+.alert-title {
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+
+.alert-body {
+  color: rgba(15, 23, 42, 0.75);
+}
+
+.alert code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 0.9em;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  padding: 0.05rem 0.35rem;
+  border-radius: 8px;
+}
+
+.alert ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1.15rem;
+}
+
 .list {
   list-style: none;
   padding: 0;
@@ -302,6 +285,63 @@ body {
 
 .muted {
   color: var(--ci-text-muted);
+}
+
+.table-wrap {
+  overflow: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.95rem;
+}
+
+.table thead th {
+  text-align: left;
+  font-weight: 700;
+  color: rgba(15, 23, 42, 0.7);
+  background: #f7f9fc;
+  border-bottom: 1px solid var(--ci-border);
+  padding: 0.85rem 0.9rem;
+}
+
+.table tbody td {
+  border-bottom: 1px solid var(--ci-border);
+  padding: 0.85rem 0.9rem;
+  background: #fff;
+}
+
+.table tbody tr:hover td {
+  background: rgba(29, 78, 216, 0.03);
+}
+
+.usercell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #fff;
+  background: var(--ci-primary);
+}
+
+.usercell-name {
+  font-weight: 700;
+}
+
+.usercell-sub {
+  font-size: 0.85rem;
+  margin-top: 0.15rem;
 }
 
 footer {

@@ -21,6 +21,7 @@
         <div class="section-title">Navigation</div>
         <nav class="sidebar-nav">
             <a href="<?= site_url('/') ?>">Accueil</a>
+            <a href="<?= site_url('/etudiants') ?>" class="<?= url_is('etudiants*') ? 'is-active' : '' ?>">Etudiants</a>
             <a href="<?= site_url('/login') ?>" class="<?= url_is('login') ? 'is-active' : '' ?>">Login</a>
             <?php if (session()->get('isLoggedIn')): ?>
                 <a href="<?= site_url('/logout') ?>">Logout</a>

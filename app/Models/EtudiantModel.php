@@ -4,18 +4,18 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class EtudiantModel extends Model
 {
-    protected $table            = 'Users';
+    protected $table            = 'Etudiant';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
 
     protected $returnType = 'array';
 
     protected $allowedFields = [
-        'email',
-        'username',
-        'password_hash',
-        'created_at',
+        'nom',
+        'prenom',
+        'etu',
     ];
 }
+

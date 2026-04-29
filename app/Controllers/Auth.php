@@ -3,16 +3,42 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
+use CodeIgniter\Database\Exceptions\DatabaseException;
 
 class Auth extends BaseController
 {
-    public function login()
+    private function findUserByEmail(string $email): ?array
     {
-        if (session()->get('isLoggedIn')) {
-            return redirect()->to(site_url('/'));
+        // Some MySQL setups are case-sensitive on table names (Linux).
+        // Support both `Users` (from vrai-init.sql) and `users` (older init.sql).
+        $db = db_connect();
+
+        foreach (['Users', 'users'] as $table) {
+            try {
+                if (method_exists($db, 'tableExists') && !$db->tableExists($table)) {
+                    continue;
+                }
+
+                $row = $db->table($table)->where('email', $email)->get(1)->getRowArray();
+                if ($row) {
+                    return $row;
+                }
+            } catch (DatabaseException) {
+                // table doesn't exist or schema mismatch
+                continue;
+            }
         }
 
-        if ($this->request->getMethod() !== 'post') {
+        return null;
+    }
+
+    public function login()
+    {
+        if ($this->session->get('isLoggedIn')) {
+            return redirect()->to(site_url('/etudiants'));
+        }
+
+        if ($this->request->getMethod(true) !== 'POST') {
             return view('auth/login', [
                 'title'          => 'Login',
                 'defaultEmail'   => 'admin@example.com',
@@ -24,24 +50,50 @@ class Auth extends BaseController
         $password = (string) $this->request->getPost('password');
 
         if ($email === '' || $password === '') {
-            return redirect()->back()->withInput()->with('error', 'Email et mot de passe requis.');
+            return view('auth/login', [
+                'title'           => 'Login',
+                'defaultEmail'    => 'admin@example.com',
+                'defaultPassword' => 'admin123',
+                'errorKey'        => $email === '' ? 'email_incorrect' : 'password_incorrect',
+            ]);
         }
 
+        // Prefer model, but fall back to direct lookup for table-name compatibility.
         $userModel = new UserModel();
-        $user      = $userModel->where('email', $email)->first();
+        $user      = $userModel->where('email', $email)->first() ?? $this->findUserByEmail($email);
 
-        if (!$user || !password_verify($password, (string) $user['password_hash'])) {
-            return redirect()->back()->withInput()->with('error', 'Identifiants invalides.');
+        if (!$user) {
+            return view('auth/login', [
+                'title'           => 'Login',
+                'defaultEmail'    => $email,
+                'defaultPassword' => $password,
+                'errorKey'        => 'email_incorrect',
+            ]);
         }
 
-        session()->regenerate(true);
-        session()->set([
+        if (!password_verify($password, (string) $user['password_hash'])) {
+            return view('auth/login', [
+                'title'           => 'Login',
+                'defaultEmail'    => $email,
+                'defaultPassword' => $password,
+                'errorKey'        => 'password_incorrect',
+            ]);
+        }
+
+        $this->session->regenerate(true);
+        $this->session->set([
             'isLoggedIn' => true,
             'user_id'    => (int) $user['id'],
             'user_email' => (string) $user['email'],
+            'username'   => (string) ($user['username'] ?? ''),
         ]);
 
-        return redirect()->to(site_url('/'));
+        // Ensure session is written before redirect (avoid "stays on /login" loops).
+        if (method_exists($this->session, 'close')) {
+            $this->session->close();
+        }
+
+        return redirect()->to(site_url('/etudiants'));
     }
 
     public function logout()

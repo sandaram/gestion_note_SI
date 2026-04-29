@@ -10,7 +10,9 @@ class AuthFilter implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
-        if (session()->get('isLoggedIn')) {
+        $session = \Config\Services::session();
+
+        if ($session->get('isLoggedIn')) {
             return;
         }
 
@@ -22,4 +24,3 @@ class AuthFilter implements FilterInterface
         // nothing
     }
 }
-

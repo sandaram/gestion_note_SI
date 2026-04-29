@@ -2,6 +2,28 @@
 -- SEMESTRE 3 COMPLET
 -- ======================
 
+-- ======================
+-- USERS (LOGIN)
+-- email: admin@example.com / mot de passe: admin123
+-- ======================
+INSERT INTO Users (email, username, password_hash) VALUES
+('admin@example.com', 'admin', '$2y$10$3Pkj932orGWbp5P/ujENX.lx3c1fiBo1hrv5PYQAvoqgkPylOg.he');
+
+-- ======================
+-- ETUDIANTS (SEED)
+-- ======================
+INSERT INTO Etudiant (nom, prenom, etu) VALUES
+('Rakoto', 'Andry', 'ETU0001'),
+('Rabe', 'Fara', 'ETU0002'),
+('Randria', 'Tahina', 'ETU0003'),
+('Ramanana', 'Soa', 'ETU0004'),
+('Razafy', 'Mamy', 'ETU0005'),
+('Andrianina', 'Tojo', 'ETU0006'),
+('Rasolofoniaina', 'Hery', 'ETU0007'),
+('Rakotomalala', 'Nantenaina', 'ETU0008'),
+('Razanajatovo', 'Kanto', 'ETU0009'),
+('Rajaonarison', 'Tiana', 'ETU0010');
+
 -- 1. Semestre
 INSERT INTO Semestre (nom) VALUES ('S3');
 
