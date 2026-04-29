@@ -35,25 +35,17 @@ MatieresUnite {
 Etudiant{
     id
     nom
+    prenom
     etu
 }
 Note{
     id
     idEtudiant 
     idSemestre
-    idOptionParcours
     idMatiere
     Note
 }
 
-Inscription(
-    id,
-    idEtudiant,
-    idSemestre,
-    idOptionParcours
-)
 
-(pour note , afin d'identifier le credit , on cherche la matiere dans OptionUnite puis on le relie a l'Unite)
 
-question : est ce que cette conception est bonne pour accomplir notre but ? quelles sont ses faiblesses
-et que propose tu sinon
+
