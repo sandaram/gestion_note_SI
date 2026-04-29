@@ -1,3 +1,5 @@
+CREATE DATABASE gestion_note_SI;
+USE gestion_note_SI;
 -- Suppression si existant (ordre important à cause des FK)
 DROP TABLE IF EXISTS Note;
 DROP TABLE IF EXISTS Inscription;
@@ -7,6 +9,7 @@ DROP TABLE IF EXISTS Matiere;
 DROP TABLE IF EXISTS OptionParcours;
 DROP TABLE IF EXISTS Etudiant;
 DROP TABLE IF EXISTS Semestre;
+DROP TABLE IF EXISTS users;
 
 -- ======================
 -- TABLES PRINCIPALES
@@ -111,3 +114,18 @@ CREATE TABLE Note (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+
+-- ======================
+-- USERS (LOGIN)
+-- ======================
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(190) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Compte par défaut (email: admin@example.com / mot de passe: admin123)
+INSERT INTO users (email, password_hash)
+VALUES ('admin@example.com', '$2y$10$3Pkj932orGWbp5P/ujENX.lx3c1fiBo1hrv5PYQAvoqgkPylOg.he');
