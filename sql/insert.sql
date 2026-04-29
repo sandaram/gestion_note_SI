@@ -317,3 +317,7 @@ SELECT u.id, m.id
 FROM Unite u
 JOIN Matiere m ON m.nom = 'MAO'
 WHERE u.nom = 'U5 - Web Design MAO';
+
+-- admin / admin123
+INSERT INTO Users (email, username, password_hash) VALUES
+('admin@gestionnote.com', 'admin', '$2a$10$DEFAULT_BCRYPT_HASH');
