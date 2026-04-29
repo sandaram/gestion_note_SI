@@ -9,7 +9,7 @@ class Auth extends BaseController
     public function login()
     {
         if (session()->get('isLoggedIn')) {
-            return redirect()->to(site_url('/produits'));
+            return redirect()->to(site_url('/'));
         }
 
         if ($this->request->getMethod() !== 'post') {
@@ -41,7 +41,7 @@ class Auth extends BaseController
             'user_email' => (string) $user['email'],
         ]);
 
-        return redirect()->to(site_url('/produits'));
+        return redirect()->to(site_url('/'));
     }
 
     public function logout()
@@ -50,4 +50,3 @@ class Auth extends BaseController
         return redirect()->to(site_url('/login'));
     }
 }
-

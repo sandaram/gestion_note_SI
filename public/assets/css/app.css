@@ -1,23 +1,27 @@
 /*
  * Simple stylesheet inspired by the default CodeIgniter welcome page.
- * Keep it lightweight and reusable across views (login, produits, etc.).
+ * Keep it lightweight and reusable across views (login, etc.).
  */
 
 :root {
-  --ci-primary: #2563eb; /* blue */
-  --ci-primary-soft: rgba(37, 99, 235, 0.12);
-  --ci-primary-focus: rgba(37, 99, 235, 0.18);
-  --ci-border: #e6edf7;
-  --ci-bg: #f3f6fb;
-  --ci-bg-soft: #ffffff;
+  /* Couleurs (modifie ces variables pour "préciser" le thème) */
+  --ci-primary: #1d4ed8; /* bleu principal (liens, actif, boutons) */
+  --ci-primary-soft: rgba(29, 78, 216, 0.12);
+  --ci-primary-focus: rgba(29, 78, 216, 0.2);
+
+  --ci-bg: #f1f4f9; /* fond de page */
+  --ci-bg-soft: #ffffff; /* cartes */
+  --ci-border: #e2e8f0; /* bordures */
+
   --ci-text: #0f172a;
   --ci-text-muted: #64748b;
 
-  --ci-sidebar-bg: #0b1220;
-  --ci-sidebar-text: rgba(255, 255, 255, 0.75);
+  --ci-sidebar-bg: #0b1220; /* sidebar sombre */
+  --ci-sidebar-text: rgba(255, 255, 255, 0.72);
   --ci-sidebar-text-strong: rgba(255, 255, 255, 0.92);
-  --ci-sidebar-active: rgba(37, 99, 235, 0.22);
-  --ci-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --ci-sidebar-active: rgba(29, 78, 216, 0.28);
+
+  --ci-shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
 }
 
 * {
@@ -28,6 +32,11 @@
 *:focus {
   background-color: var(--ci-primary-focus);
   outline: none;
+}
+
+*:focus-visible {
+  outline: 3px solid rgba(29, 78, 216, 0.25);
+  outline-offset: 2px;
 }
 
 html,
@@ -191,6 +200,29 @@ body {
   margin: 0 auto;
 }
 
+.card--wide {
+  max-width: 980px;
+  margin: 0;
+}
+
+.notice {
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(29, 78, 216, 0.18);
+  background: rgba(29, 78, 216, 0.08);
+  color: #1e3a8a;
+  margin-bottom: 1rem;
+}
+
+.section-title-row {
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--ci-primary);
+  margin: 0 0 0.9rem;
+}
+
 .mt-3 {
   margin-top: 0.75rem;
 }
@@ -211,7 +243,16 @@ body {
   border: 1px solid var(--ci-border);
   padding: 0.6rem 0.75rem;
   font: inherit;
-  background: #f8fafc;
+  background: #ffffff;
+}
+
+.field input::placeholder {
+  color: rgba(100, 116, 139, 0.85);
+}
+
+.field input:focus {
+  border-color: rgba(29, 78, 216, 0.45);
+  box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.12);
 }
 
 .btn {

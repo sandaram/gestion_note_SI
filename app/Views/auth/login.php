@@ -3,14 +3,20 @@
 <?= $this->section('content') ?>
 <div class="page-header">
     <div>
-        <h1 class="page-title">Login</h1>
+        <h1 class="page-title">Formulaire utilisateur</h1>
         <div class="breadcrumbs">
-            <a href="<?= site_url('/') ?>">Accueil</a> / <span>Login</span>
+            <a href="<?= site_url('/') ?>">Accueil</a> / <span>Utilisateur</span> / <span>Login</span>
         </div>
     </div>
 </div>
 
-<div class="card card--narrow">
+<div class="notice">
+    Les champs marqués d'un <strong>*</strong> sont obligatoires.
+</div>
+
+<div class="card card--wide">
+    <div class="section-title-row">1. Identifiants</div>
+
     <?php if (session()->getFlashdata('error')): ?>
         <div class="alert alert-error">
             <?= esc(session()->getFlashdata('error')) ?>
