@@ -7,7 +7,7 @@ aussi, il se peut que dans une unite , il y ait un choix de matiere
 donc pour : stocker et gerer les notes par etudiant pour chaque semestre (avec sa propre option de parcours par semestre)
 on propose cette conception pour la base de donnee :
 
-Semestre{
+Semestre {
     id int primary key auto_increment,
     nom varchar(50)
 }
@@ -27,7 +27,7 @@ Unite{
     nomMatiere1 (optional ?)
     credits
 }
-OptionUnite{
+MatieresUnite {
     id
     idUnite
     idMatiere
